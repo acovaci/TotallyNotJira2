@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Projects Overview";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (TempData.ContainsKey("message"))
+{
+    <h3 class="alert alert-info" role="alert">@ViewBag.message</h3>
+}
+
+@foreach (var project in ViewBag.Projects)
+{
+    <h3><a href="/Project/Show/@project.ProjectId">@project.Name</a></h3>
+    <p>@project.Description</p>
+    <br />
+    <i class="glyphicon glyphicon-user"></i> <i>created by</i>
+
+    <br />
+    <a href="/Project/Edit/@project.ProjectId" class="btn">Edit Project</a>
+    <a href="/Project/Delete/@project.ProjectId" class="btn">Delete Project</a>
+    <hr />
+    <br />
+}
+
+<a href="/Project/New" class="btn">New Project</a>
+<br />

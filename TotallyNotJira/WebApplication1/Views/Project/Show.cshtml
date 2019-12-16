@@ -1,0 +1,41 @@
+﻿@model TotallyNotJira.Models.Project
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h1>Project @Model.ProjectId details</h1>
+
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">@Model.Name</div>
+    <div class="panel-body">
+        @Model.Description
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-success" href="/Project/Edit/@Model.ProjectId">Edit project</a>
+        <br />
+    </div>
+</div>
+
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Project", method: FormMethod.Post, routeValues: new { id = @Model.ProjectId }))
+{
+    <!--@Html.HiddenFor(m => m.ProjectId) -->
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <br />
+    <button class="btn btn-success" type="submit">Delete project</button>
+
+}
+
+<br />
+<hr />
+<a class="btn btn-success" href="/Project/Index">Inapoi la articole</a>
+
+
+
+
+

@@ -1,0 +1,57 @@
+﻿@model TotallyNotJira.Models.Task1
+
+@{
+    ViewBag.Titlu = "New task";
+}
+
+<h2>@ViewBag.Titlu</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Task1"))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("TaskTitle", "Task Title")
+    <br />
+    @Html.TextBox("TaskTitle", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.TaskTitle, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("TaskDescription", "Description")
+    <br />
+    @Html.TextArea("TaskDescription", null, new { @class = "form-control" })
+    //@Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("TaskStartDate", "Start Date")
+    <br />
+    @Html.TextBoxFor(m => m.TaskStartDate, new { type = "date" })
+    <br />
+
+    @Html.Label("TaskEndDate", "End Date")
+    <br />
+    @Html.TextBoxFor(m => m.TaskEndDate, new { type = "date" })
+    <br />
+
+    <!--todo : change to display available project, also teams-->
+    @Html.Label("ProjectId", "Project ID")
+    <br />
+    @Html.TextArea("ProjectId", null, new { @class = "form-control" })
+    <br />
+
+    <label>Status:</label>
+    <select asp-for="TaskStatus">
+        <option value="Not started">Not started</option>
+        <option value="In progress">In progress</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Save task</button>
+}
+
+
+
