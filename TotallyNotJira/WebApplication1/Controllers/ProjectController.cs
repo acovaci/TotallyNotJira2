@@ -13,7 +13,7 @@ namespace TotallyNotJira.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Project
-        [Authorize(Roles = "Member,Organizator,Administrator")]
+        [Authorize(Roles = "Member, Organizator, Administrator")]
         public ActionResult Index()
         {
             var projects = db.Projects.Include("Administrator").Include("Organizator");
@@ -25,7 +25,7 @@ namespace TotallyNotJira.Controllers
 
             return View();
         }
-        [Authorize(Roles = "Member,Organizator,Administrator")]
+        [Authorize(Roles = "Member, Organizator, Administrator")]
         public ActionResult Show(int id)
         {
             Project project = db.Projects.Find(id);
@@ -33,7 +33,7 @@ namespace TotallyNotJira.Controllers
 
         }
         // GET: Project/Create
-        [Authorize(Roles = "Member,Organizator,Administrator")]
+        [Authorize(Roles = "Member, Organizator, Administrator")]
         public ActionResult New()
         {
             Project project = new Project();
@@ -45,7 +45,7 @@ namespace TotallyNotJira.Controllers
 
         // POST: Project/Create
         [HttpPost]
-        [Authorize(Roles = "Member, Organizator,Administrator")]
+        [Authorize(Roles = "Member, Organizator, Administrator")]
         public ActionResult New(Project project)
         {
             try
@@ -63,7 +63,7 @@ namespace TotallyNotJira.Controllers
                 return View();
             }
         }
-        [Authorize(Roles = "Organizator,Administrator")]
+        [Authorize(Roles = "Organizator, Administrator")]
         public ActionResult Edit(int id)
         {
             Project project = db.Projects.Find(id);
@@ -81,7 +81,7 @@ namespace TotallyNotJira.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "Organizator,Administrator")]
+        [Authorize(Roles = "Organizator, Administrator")]
         public ActionResult Edit(int id, Project requestProject)
         {
 
@@ -123,12 +123,11 @@ namespace TotallyNotJira.Controllers
 
         // GET: Project/Delete/5
         [HttpDelete]
-        [Authorize(Roles = "Organizator,Administrator")]
+        [Authorize(Roles = "Organizator, Administrator")]
         public ActionResult Delete(int id)
         {
             Project project = db.Projects.Find(id);
-            if (project.UserId == User.Identity.GetUserId() ||
-            User.IsInRole("Administrator"))
+            if (project.UserId == User.Identity.GetUserId() || User.IsInRole("Administrator"))
             {
                 db.Projects.Remove(project);
                 db.SaveChanges();
@@ -138,7 +137,7 @@ namespace TotallyNotJira.Controllers
             else
             {
                 TempData["message"] = "You can not delete that project!";
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
         }
     }

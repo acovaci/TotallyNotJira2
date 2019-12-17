@@ -251,6 +251,7 @@
     <Content Include="Views\Task1\Index.cshtml" />
     <Content Include="Views\Task1\New.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

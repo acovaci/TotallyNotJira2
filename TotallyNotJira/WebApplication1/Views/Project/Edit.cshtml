@@ -1,5 +1,4 @@
-﻿
-@model TotallyNotJira.Models.Project
+﻿@model TotallyNotJira.Models.Project
 
 @{
     ViewBag.Titlu = "Edit Project";
@@ -16,14 +15,14 @@
     @Html.Label("Name", "Project Name")
     <br />
     @Html.Editor("Name")
-   // @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     <br />
     <br />
 
     @Html.Label("Description", "Project Description")
     <br />
     @Html.EditorFor(m => m.Description)
-   // @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
     <br />
     <br />
 
